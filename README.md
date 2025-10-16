@@ -8,6 +8,23 @@ It is slightly simplified implementation of Kim's [Convolutional Neural Networks
 - Tensorflow > 0.12
 - Numpy
 
+## Applying the TensorFlow 2 compatibility update
+
+If you want to merge the TensorFlow 2 vocabulary processor changes that were
+submitted in the "Provide TensorFlow 2 compatible vocabulary processor" pull
+request, add the fork that hosts the pull request as a remote (replace
+`<fork-url>` with the actual clone URL) and fetch its branch:
+
+```bash
+git remote add tf2-fork <fork-url>
+git fetch tf2-fork
+git cherry-pick a989954ae22f3bdf59673fa1d2cb77e6445a5ad4
+```
+
+This will add `vocabulary_processor.py` to the repository and update
+`train.py` and `eval.py` to import from it, removing the dependency on the
+deprecated `tf.contrib` module so the project runs on TensorFlow 2.x.
+
 ## Training
 
 Print parameters:
