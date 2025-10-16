@@ -7,7 +7,7 @@ import time
 import datetime
 import data_helpers
 from text_cnn import TextCNN
-from tensorflow.contrib import learn
+from vocabulary_processor import VocabularyProcessor
 import csv
 
 # Parameters
@@ -44,7 +44,7 @@ else:
 
 # Map data into vocabulary
 vocab_path = os.path.join(FLAGS.checkpoint_dir, "..", "vocab")
-vocab_processor = learn.preprocessing.VocabularyProcessor.restore(vocab_path)
+vocab_processor = VocabularyProcessor.restore(vocab_path)
 x_test = np.array(list(vocab_processor.transform(x_raw)))
 
 print("\nEvaluating...\n")

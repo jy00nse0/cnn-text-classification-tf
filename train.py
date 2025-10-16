@@ -7,7 +7,7 @@ import time
 import datetime
 import data_helpers
 from text_cnn import TextCNN
-from tensorflow.contrib import learn
+from vocabulary_processor import VocabularyProcessor
 
 # Parameters
 # ==================================================
@@ -51,7 +51,7 @@ def preprocess():
 
     # Build vocabulary
     max_document_length = max([len(x.split(" ")) for x in x_text])
-    vocab_processor = learn.preprocessing.VocabularyProcessor(max_document_length)
+    vocab_processor = VocabularyProcessor(max_document_length)
     x = np.array(list(vocab_processor.fit_transform(x_text)))
 
     # Randomly shuffle data
